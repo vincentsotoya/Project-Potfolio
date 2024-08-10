@@ -6,8 +6,29 @@ import navIcon2 from "../assets/img/nav-icon2.svg";
 import navIcon3 from "../assets/img/nav-icon3.svg";
 
 export const NavBar = () => {
-  const { activeLink, setAciveLink } = useState("home");
-  const { scrolled, setScrolled } = useState("false");
+  // const { activeLink, setActiveLink } = useState('home');
+  // const { scrolled, setScrolled } = useState(false);
+
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     if (window.scrollY > 50) {
+  //       setScrolled(true);
+  //     } else {
+  //       setScrolled(false);
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", onScroll);
+
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
+
+  // const onUpdateActiveLink = (value) => {
+  //   setActiveLink(value);
+  // };
+
+  const [activeLink, setActiveLink] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -16,16 +37,16 @@ export const NavBar = () => {
       } else {
         setScrolled(false);
       }
-    };
+    }
 
     window.addEventListener("scroll", onScroll);
 
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [])
 
-  const onUpdatedActiveLink = (value) => {
-    setAciveLink(value);
-  };
+  const onUpdateActiveLink = (value) => {
+    setActiveLink(value);
+  }
 
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
@@ -44,7 +65,7 @@ export const NavBar = () => {
               className={
                 activeLink === "home" ? "active navbar-link" : "navbar-link"
               }
-              onClick={() => onUpdateLink("home")}
+              onClick={() => onUpdateActiveLink('home')}
             >
               Home
             </Nav.Link>
@@ -53,7 +74,7 @@ export const NavBar = () => {
               className={
                 activeLink === "skills" ? "active navbar-link" : "navbar-link"
               }
-              onClick={() => onUpdateLink("skills")}
+              onClick={() => onUpdateActiveLink('skills')}
             >
               Skills
             </Nav.Link>
@@ -62,7 +83,7 @@ export const NavBar = () => {
               className={
                 activeLink === "projects" ? "active navbar-link" : "navbar-link"
               }
-              onClick={() => onUpdateLink("projects")}
+              onClick={() => onUpdateActiveLink('projects')}
             >
               Projects
             </Nav.Link>
